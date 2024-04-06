@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import { Button } from "@/components/button";
+import { Input } from "@/components/input";
+import { css } from "@emotion/react";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { postInit } from "../../api/postInit";
@@ -84,53 +87,125 @@ const NickName = () => {
   // '다음으로' 버튼 클릭
   const handleNextClick = () => {
     if (isInputValid && selectGender !== undefined) {
+      // TO DO : 서버에 닉네임 데이터 보내기 확인 후 alert 삭제
       alert("닉네임 생성 성공!");
       mutation.mutate();
     }
+    router.push("/home");
   };
 
   return (
-    <>
-      <div style={{ marginBottom: "20px" }}>
-        <p>닉네임</p>
-        <input
+    <div css={WrapperStyle}>
+      <p css={GuideStyle}>
+        안녕 난 푸바오
+        <br /> 넌 누구야?
+      </p>
+      <div style={{ marginBottom: "40px" }}>
+        <p css={TitleStyle}>닉네임</p>
+        <Input
           value={combinedText}
           onChange={handleInputChange}
           placeholder="국문/영/숫자 조합 공백없이 2-8자"
           maxLength={8}
-          style={{ borderColor: isInputValid ? "initial" : "red" }}
         />
-        {combinedText && <button onClick={handleDeleteClick}>전체 삭제</button>}
-        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+        <div style={{ position: "relative", margin: "5px" }}>
+          {errorMessage && (
+            <p style={{ color: "red", position: "absolute", left: "0px" }}>
+              {errorMessage}
+            </p>
+          )}
+          {combinedText && (
+            <button
+              onClick={handleDeleteClick}
+              style={{ position: "absolute", right: "0px", color: "#979898" }}
+            >
+              전체 삭제
+            </button>
+          )}
+        </div>
       </div>
       <div>
-        <p>성별</p>
-        <div>
+        <p css={TitleStyle}>성별</p>
+        <div css={ButtonContainerStyle}>
           <button
             onClick={() => setSelectGender(true)}
-            style={{ color: selectGender === true ? "blue" : "black" }}
+            css={ButtonStyle}
+            style={{
+              color: selectGender === true ? "white" : "#A1A5AC",
+              backgroundColor: selectGender === true ? "#A7C2B1" : "#FFFFFF",
+              fontWeight: selectGender === true ? "bold" : "normal",
+            }}
           >
             임오
           </button>
           <button
             onClick={() => setSelectGender(false)}
-            style={{ color: selectGender === false ? "blue" : "black" }}
+            css={ButtonStyle}
+            style={{
+              color: selectGender === false ? "white" : "#A1A5AC",
+              backgroundColor: selectGender === false ? "#A7C2B1" : "#FFFFFF",
+              fontWeight: selectGender === false ? "bold" : "normal",
+            }}
           >
             삼튠
           </button>
         </div>
       </div>
-      <button
+      <Button
+        variants="primary"
         disabled={!isInputValid || selectGender === undefined}
         onClick={handleNextClick}
-        style={{
-          color: isInputValid && selectGender !== undefined ? "blue" : "red",
-        }}
       >
         다음으로
-      </button>
-    </>
+      </Button>
+    </div>
   );
 };
+
+const WrapperStyle = css({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  height: "100vh",
+  padding: "0px 20px",
+});
+
+const GuideStyle = css({
+  fontSize: "28px",
+  fontWeight: "bold",
+  marginTop: "100px",
+  marginBottom: "60px",
+  color: "#FFFFFF",
+  textAlign: "center",
+  lineHeight: "1.3",
+});
+
+const TitleStyle = css({
+  fontSize: "18px",
+  fontWeight: "bold",
+  marginBottom: "10px",
+  color: "#FFFFFF",
+});
+
+const ButtonContainerStyle = css({
+  display: "flex",
+  gap: "10px",
+  margin: "20px 0px 220px 0px",
+  color: "#FFFFFF",
+});
+
+const ButtonStyle = css({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  fontSize: "17px",
+  fontWeight: "400",
+  borderRadius: "8px",
+  width: "100%",
+  height: "52px",
+  boxShadow: "0px 0px 16px 2px rgba(0, 0, 0, 0.02)",
+  backgroundColor: "#FFFFFF",
+  color: "A1A5AC",
+});
 
 export default NickName;
