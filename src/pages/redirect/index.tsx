@@ -1,7 +1,7 @@
 import { setCookie } from "cookies-next";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { postLogin } from "../api/postLogin";
+import { postLogin } from "../../api/postLogin";
 
 const Redirect = () => {
   const router = useRouter();

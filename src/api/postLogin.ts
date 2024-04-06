@@ -10,8 +10,6 @@ export const postLogin = async (code: string) => {
       refreshToken: string;
       initProfile: boolean;
     }>
-  >("api/v1/auth/kakao",
-    {code}
-  );
+  >("api/v1/auth/kakao", { code });
   return data;
 };

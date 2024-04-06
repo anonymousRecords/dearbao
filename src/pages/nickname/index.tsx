@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { postInit } from "../api/postInit";
+import { postInit } from "../../api/postInit";
 import { AdjectiveList } from "./constant/adjective-list";
 import { NounList } from "./constant/noun-list";
 import { SlangList } from "./constant/slang-list";
