@@ -15,13 +15,14 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "jsxImportSource": "@emotion/react"
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/components/layout/style.ts"
+    "src/components/layout/style.ts"
   ],
   "exclude": ["node_modules"]
 }
