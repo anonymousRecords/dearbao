@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { postInit } from "../../api/postInit";
-import { AdjectiveList } from "./constant/adjective-list";
-import { NounList } from "./constant/noun-list";
-import { SlangList } from "./constant/slang-list";
+import { AdjectiveList } from "../../constants/adjective-list";
+import { NounList } from "../../constants/noun-list";
+import { SlangList } from "../../constants/slang-list";
 
 const getRandomItem = (list: string[]) =>
   list[Math.floor(Math.random() * list.length)];
