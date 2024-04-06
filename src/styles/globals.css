@@ -178,7 +178,7 @@ body {
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: #009436;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -189,4 +189,8 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.swiper-pagination-bullet {
+  background: white !important;
 }

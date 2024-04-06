@@ -1,4 +1,4 @@
-import { pretendardFont } from "../../../../public/fonts/fonts.ts";
+import { pretendardFont } from "../../../public/fonts/fonts.ts";
 import * as S from "./style.ts";
 
 interface LayoutProps {

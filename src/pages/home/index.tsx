@@ -1,5 +1,5 @@
 import { useState } from "react";
-import NavigationModal from "../components/navigation-modal/navigation-modal";
+import NavigationModal from "../../components/navigation-modal/navigation-modal";
 
 const Home = () => {
   const [isModalOpen, setModalOpen] = useState(false);
