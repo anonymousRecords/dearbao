@@ -1,19 +1,51 @@
+import { Calendar } from "@/components/calendar";
+import { Header } from "@/components/header";
+import { IconButton } from "@/components/icon-button";
+import { css } from "@emotion/react";
 import { useRouter } from "next/router";
-import Calendar from "./components/calendar";
 
 const Collecting = () => {
   const router = useRouter();
-  const collectingPageTitle = "푸바오와 나의 추억을 모아보세요!";
 
   return (
-    <>
-      <button onClick={() => router.push("/home")}>back</button>
-      <body>
-        <h1>{collectingPageTitle}</h1>
+    <div css={WrapperStyle}>
+      <Header
+        left={
+          <IconButton
+            imgSrc="/svg/arrow-left.svg"
+            width={18}
+            onClick={() => router.back()}
+          />
+        }
+        title=""
+        right=""
+      />
+      <div>
+        <p css={GuideStyle}>
+          푸바오와 나의
+          <br /> 추억을 모아보세요!
+        </p>
         <Calendar />
-      </body>
-    </>
+      </div>
+    </div>
   );
 };
+
+const WrapperStyle = css({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+})
+
+const GuideStyle = css({
+  fontSize: "22px",
+  fontWeight: "bold",
+  marginTop: "100px",
+  marginBottom: "60px",
+  color: "#FFFFFF",
+  textAlign: "center",
+  lineHeight: "1.3",
+});
 
 export default Collecting;
