@@ -2,7 +2,7 @@ import React from "react";
 import { css } from "@emotion/react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variants: "primary" | "secondary";
+  variants: "primary" | "secondary" | "tertiary" | "quaternary";
   disabled?: boolean;
   onClick?: () => void;
 }
@@ -33,9 +33,13 @@ const variantsCss = {
     backgroundColor: "#009436",
     color: "white",
   }),
-  territory: css({
+  tertiary: css({
     backgroundColor: "#FFFFFF",
     color: "#1E212B",
+  }),
+  quaternary: css({
+    backgroundColor: "#A7C2B1",
+    color: "#FFFFFF",
   }),
 };
 
