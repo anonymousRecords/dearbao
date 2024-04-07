@@ -1,13 +1,15 @@
 import { useState } from "react";
+import { css } from "@emotion/react";
+import Modal from "../modal/modal";
 
 interface CalendarProps {
   dataForDates?: Record<string, string>;
 }
 
 const Calendar: React.FC<CalendarProps> = ({ dataForDates }) => {
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const [currentDate, setCurrentDate] = useState<Date>(new Date());
-    const [selectedDateState, setSelectedDateState] = useState<Date | null>();
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [currentDate, setCurrentDate] = useState<Date>(new Date());
+  const [selectedDateState, setSelectedDateState] = useState<Date | null>();
 
   // 날짜 선택
   const handleDateClick = (date: Date) => {
@@ -55,7 +57,8 @@ const Calendar: React.FC<CalendarProps> = ({ dataForDates }) => {
 
     return {
       backgroundColor: isWithData ? "lightblue" : "",
-      color: isToday ? "green" : isSelectedDate ? "pink" : "black",
+      color: isToday ? "black" : isSelectedDate ? "#009436" : "#A0A0A0",
+      fontWeight: isToday ? "bold" : isSelectedDate ? "bold" : "normal",
     };
   };
 
@@ -77,7 +80,7 @@ const Calendar: React.FC<CalendarProps> = ({ dataForDates }) => {
     let dayCounter = 1;
 
     calendar.push(
-      <tr key="header">
+      <tr key="header" css={WeekdayStyle}>
         {["일", "월", "화", "수", "목", "금", "토"].map((day, index) => (
           <th key={index}>{day}</th>
         ))}
@@ -105,41 +108,120 @@ const Calendar: React.FC<CalendarProps> = ({ dataForDates }) => {
           </td>
         );
       }
-      calendar.push(<tr key={i}>{row}</tr>);
+      calendar.push(
+        <tr css={DayStyle} key={i}>
+          {row}
+        </tr>
+      );
       if (dayCounter > daysInMonth) {
         break;
       }
     }
 
     return (
-      <table>
+      <table css={WrapperStyle}>
         <thead>
           <tr>
             <th colSpan={7}>
-              <button onClick={() => handleMonthChange(-1)}>이전 달</button>
+              <button css={MonthStyle} onClick={() => handleMonthChange(-1)}>
+                이전 달
+              </button>
               <button
+                css={CurrentMonthStyle}
                 onClick={() => handleGoToToday()}
               >{` ${today.toLocaleString("default", { month: "long", year: "numeric" })} `}</button>
-              <button onClick={() => handleMonthChange(1)}>다음 달</button>
+              <button css={MonthStyle} onClick={() => handleMonthChange(1)}>
+                다음 달
+              </button>
             </th>
           </tr>
         </thead>
-        <tbody>{calendar}</tbody>
+        <tbody css={CalenderWrapperStyle}>{calendar}</tbody>
       </table>
     );
   };
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       {renderCalendar()}
-      {showModal && (
-        <div style={{ width: "200px", height: "200px", background: "lightYellow", borderRadius: '8px' }}>
-          <button onClick={() => setShowModal(false)}>닫기</button>
-          <p>모달창</p>
-        </div>
-      )}
+      {showModal && <Modal closeModal={() => setShowModal(false)} />}
     </div>
   );
 };
+
+const WrapperStyle = css({
+  width: "365px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "20px",
+  backgroundColor: "#FFFFFF",
+  borderRadius: "8px",
+  boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+});
+
+const CurrentMonthStyle = css({
+  textAlign: "center",
+  fontSize: "22px",
+  fontWeight: "bold",
+  marginBottom: "20px",
+  cursor: "pointer",
+  background: "none",
+  border: "none",
+  color: "#000000",
+  padding: "10px",
+});
+
+const MonthStyle = css({
+  textAlign: "center",
+  fontSize: "16px",
+  marginBottom: "20px",
+  cursor: "pointer",
+  background: "none",
+  border: "none",
+  color: "#D9D9D9",
+  padding: "10px",
+});
+
+const CalenderWrapperStyle = css({
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+});
+
+const WeekdayStyle = css({
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-around",
+  alignItems: "center",
+  textAlign: "center",
+  fontSize: "20px",
+  color: "#ABABAB",
+  padding: "10px",
+});
+
+const DayStyle = css({
+  // width: "100%",
+  // backgroundColor: "pink",
+  // display: "flex",
+  // flexDirection: "row",
+  // justifyContent: "space-between",
+  // alignItems: "center",
+  // textAlign: "center",
+  // fontSize: "20px",
+  // color: "#ABABAB",
+  // padding: "10px",
+  width: "100%",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-around",
+  alignItems: "center",
+  textAlign: "center",
+  fontSize: "20px",
+  color: "#A0A0A0",
+  padding: "10px",
+  cursor: "pointer",
+});
 
 export default Calendar;
