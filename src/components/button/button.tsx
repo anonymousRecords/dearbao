@@ -1,4 +1,3 @@
-import React from "react";
 import { css } from "@emotion/react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

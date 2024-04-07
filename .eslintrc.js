@@ -64,37 +64,37 @@ module.exports = {
       "error",
       { ignoreRestSiblings: true },
     ],
-    "@typescript-eslint/member-ordering": [
-      "error",
-      {
-        default: [
-          "public-static-field",
-          "private-static-field",
-          "public-instance-field",
-          "private-instance-field",
-          "public-constructor",
-          "private-constructor",
-          "public-instance-method",
-          "private-instance-method",
-        ],
-      },
-    ],
+    // "@typescript-eslint/member-ordering": [
+    //   "error",
+    //   {
+    //     default: [
+    //       "public-static-field",
+    //       "private-static-field",
+    //       "public-instance-field",
+    //       "private-instance-field",
+    //       "public-constructor",
+    //       "private-constructor",
+    //       "public-instance-method",
+    //       "private-instance-method",
+    //     ],
+    //   },
+    // ],
 
-    "import/order": [
-      "error",
-      {
-        groups: [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index",
-          "object",
-        ],
-        alphabetize: { order: "asc", caseInsensitive: true },
-      },
-    ],
+    // "import/order": [
+    //   "error",
+    //   {
+    //     groups: [
+    //       "builtin",
+    //       "external",
+    //       "internal",
+    //       "parent",
+    //       "sibling",
+    //       "index",
+    //       "object",
+    //     ],
+    //     alphabetize: { order: "asc", caseInsensitive: true },
+    //   },
+    // ],
 
     "react/prop-types": "off",
     // React.memo, React.forwardRef에서 사용하는 경우도 막고 있어서
