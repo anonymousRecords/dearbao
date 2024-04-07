@@ -24,7 +24,7 @@ const navigationList: TabType[] = [
   },
   {
     id: "2",
-    name: "contact",
+    name: "inquire",
     title: "문의하기",
   },
 ];
