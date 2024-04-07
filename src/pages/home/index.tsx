@@ -1,22 +1,30 @@
 import { useState } from "react";
-import NavigationModal from "../../components/navigation-modal/navigation-modal";
+import { Drawer } from "@/components/drawer";
+import { Header } from "@/components/header";
+import { IconButton } from "@/components/icon-button";
 
 const Home = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const openModal = () => {
-    setModalOpen(true);
+  const openDrawer = () => {
+    setIsDrawerOpen(true);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
+  const closeDrawer = () => {
+    setIsDrawerOpen(false);
   };
   return (
     <>
-      <button onClick={openModal}>햄버거 메뉴 버튼</button>
+      <Header
+        left=""
+        title=""
+        right={
+          <IconButton imgSrc="/svg/menu.svg" width={25} onClick={openDrawer} />
+        }
+      />
       <button>데일리 미션 버튼</button>
       <p>홈 화면</p>
-      <NavigationModal isOpen={isModalOpen} onClose={closeModal} />
+      <Drawer isOpen={isDrawerOpen} onClose={closeDrawer} />
     </>
   );
 };
