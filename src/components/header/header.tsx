@@ -31,7 +31,8 @@ const headerTitle = css({
   textAlign: "center",
   fontSize: "20px",
   fontWeight: 500,
-  color: "#2294ff",
+  color: "white",
+  letterSpacing: "1px",
 });
 
 interface HeaderProps {
