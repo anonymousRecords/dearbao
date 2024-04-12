@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getCookie } from 'cookies-next';
 
 export const baseAxios = axios.create({
-  baseURL: 'https://dev2.yamfubao.shop',
+  baseURL: 'https://yamfubao.shop',
 });
 
 baseAxios.interceptors.request.use((config) => {
