@@ -7,6 +7,8 @@ import { SnackBar } from "@/components/snack-bar";
 import { TextArea } from "@/components/text-area";
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
+import { useMutation } from "@tanstack/react-query";
+import { postInquire } from "@/api/postInquire";
 
 const MakeInquire = () => {
   const router = useRouter();
@@ -16,6 +18,20 @@ const MakeInquire = () => {
   const [titleErrorMessage, setTitleErrorMessage] = useState<string>("");
   const [inquireContent, setInquireContent] = useState<string>("");
   const [successSnackBar, setSuccessSnackBar] = useState<boolean>(false);
+
+  const handleInquireButton = useMutation({
+    mutationFn: postInquire,
+    onSuccess: () => {
+      console.log("문의 성공");
+      setSuccessSnackBar(true);
+      setTimeout(() => {
+        setSuccessSnackBar(false);
+      }, 1000);
+      setTimeout(() => {
+        router.push("/home");
+      }, 1000);
+    },
+  });
 
   // 이메일 입력
   const handleEmailInputChange = (
@@ -126,15 +142,7 @@ const MakeInquire = () => {
             titleErrorMessage.length > 0 ||
             inquireContent.length === 0
           }
-          onClick={() => {
-            setSuccessSnackBar(true);
-            setTimeout(() => {
-              setSuccessSnackBar(false);
-            }, 1000);
-            setTimeout(() => {
-              router.push("/home");
-            }, 1000);
-          }}
+          onClick={() => handleInquireButton.mutate({ inquireEmail, inquireTitle, inquireContent })}
         >
           문의하기
         </Button>
