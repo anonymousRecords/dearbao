@@ -21,6 +21,30 @@ export type Deactivation = {
   data: string;
 };
 
+// 닉네임
 export type Nickname = {
   nickname: string;
+};
+
+// 미션 (홈 페이지)
+export type Mission = {
+  // 공통
+  nickname: string;
+  messageOpenTime: boolean;
+  missionSuccess: boolean;
+  // 미오픈
+  remainingTime?: string;
+  // 오픈
+  message?: string;
+};
+
+// 데일리 미션 조회
+export type DailyMission = {
+  content: string;
+  id: number;
+};
+
+export type MyMission = {
+  date: string;
+  content: string;
 };
