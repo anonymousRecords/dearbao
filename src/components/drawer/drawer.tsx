@@ -5,6 +5,7 @@ import { BottomSheet } from "../bottom-sheet/bottom-sheet";
 import { Button } from "../button";
 import { postLogout } from "@/api/postLogout";
 import { deleteDeactivation } from "@/api/deleteDeactivation";
+import { useNickname } from "@/hook/useNickname";
 
 interface DrawerProps {
   isOpen: boolean;
@@ -31,8 +32,9 @@ const navigationList: TabType[] = [
 ];
 
 export default function Drawer({ isOpen, onClose }: DrawerProps) {
-
   const router = useRouter();
+
+  const { nickname } = useNickname(); 
 
   return (
     <AnimatePresence>
@@ -59,7 +61,7 @@ export default function Drawer({ isOpen, onClose }: DrawerProps) {
             >
               {/* TO DO : 닉네임 & 호칭 데이터로 수정 */}
               <div css={NicknameStyle}>
-                <h3>닉네임</h3>
+                <h3>{nickname}</h3>
                 <p>호칭</p>
               </div>
             </motion.div>
