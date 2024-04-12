@@ -1,9 +1,10 @@
 import { css } from "@emotion/react";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { BottomSheet } from "../bottom-sheet/bottom-sheet";
 import { Button } from "../button";
+import { postLogout } from "@/api/postLogout";
+import { deleteDeactivation } from "@/api/deleteDeactivation";
 
 interface DrawerProps {
   isOpen: boolean;
@@ -30,15 +31,6 @@ const navigationList: TabType[] = [
 ];
 
 export default function Drawer({ isOpen, onClose }: DrawerProps) {
-  // TO DO: accessToken 값 수정 필요
-  const accessToken = "accessToken";
-
-  const kakaoLogin = () => {
-    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${process
-      .env.NEXT_PUBLIC_KAKAO_REST_API_KEY!}&redirect_uri=${
-      process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI
-    }&response_type=code`;
-  };
 
   const router = useRouter();
 
@@ -88,83 +80,65 @@ export default function Drawer({ isOpen, onClose }: DrawerProps) {
               </motion.div>
             ))}
             <div css={accountStyle}>
-              {accessToken ? (
-                <motion.div
-                  initial={{ opacity: 0, y: 0 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.3, ease: "easeInOut" }}
-                >
-                  <div css={accountButtonBoxStyle}>
-                    <BottomSheet.Root>
-                      <BottomSheet.Trigger>
-                        <p css={accountButtonStyle}>로그아웃</p>
-                      </BottomSheet.Trigger>
-                      <BottomSheet.Portal>
-                        <BottomSheet.Content>
-                          로그아웃 하시겠어요?
-                          <BottomSheet.BottomCTA>
-                            <Button variants="secondary"> 로그아웃</Button>
-                            <BottomSheet.Close asChild>
-                              <Button variants="quaternary">닫기</Button>
-                            </BottomSheet.Close>
-                          </BottomSheet.BottomCTA>
-                        </BottomSheet.Content>
-                        <BottomSheet.Overlay />
-                      </BottomSheet.Portal>
-                    </BottomSheet.Root>
-                    <BottomSheet.Root>
-                      <BottomSheet.Trigger>
-                        <button css={accountButtonStyle}>회원탈퇴</button>
-                      </BottomSheet.Trigger>
-                      <BottomSheet.Portal>
-                        <BottomSheet.Content>
-                          회원탈퇴 하시겠어요?
-                          <BottomSheet.BottomCTA>
-                            <Button variants="secondary"> 회원탈퇴</Button>
-                            <BottomSheet.Close asChild>
-                              <Button variants="quaternary">닫기</Button>
-                            </BottomSheet.Close>
-                          </BottomSheet.BottomCTA>
-                        </BottomSheet.Content>
-                        <BottomSheet.Overlay />
-                      </BottomSheet.Portal>
-                    </BottomSheet.Root>
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0, y: 0 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.3, ease: "easeInOut" }}
-                  css={accountButtonStyle}
-                >
+              <motion.div
+                initial={{ opacity: 0, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.3, ease: "easeInOut" }}
+              >
+                <div css={accountButtonBoxStyle}>
                   <BottomSheet.Root>
                     <BottomSheet.Trigger>
-                      <p css={accountButtonStyle}>로그인</p>
+                      <p css={accountButtonStyle}>로그아웃</p>
                     </BottomSheet.Trigger>
                     <BottomSheet.Portal>
                       <BottomSheet.Content>
-                        로그인 하시겠어요?
+                        로그아웃 하시겠어요?
                         <BottomSheet.BottomCTA>
-                          <button
-                            css={kakaoButtonStyle}
-                            onClick={() => kakaoLogin()}
+                          <Button
+                            variants="secondary"
+                            onClick={async () => {
+                              await postLogout();
+                              router.push("/onboarding");
+                            }}
                           >
-                            <Image
-                              alt="kakao"
-                              src="/svg/kakao-logo.svg"
-                              width={18}
-                              height={18}
-                            />
-                            카카오톡 로그인
-                          </button>
+                            {" "}
+                            로그아웃
+                          </Button>
+                          <BottomSheet.Close asChild>
+                            <Button variants="quaternary">닫기</Button>
+                          </BottomSheet.Close>
                         </BottomSheet.BottomCTA>
                       </BottomSheet.Content>
                       <BottomSheet.Overlay />
                     </BottomSheet.Portal>
                   </BottomSheet.Root>
-                </motion.div>
-              )}
+                  <BottomSheet.Root>
+                    <BottomSheet.Trigger>
+                      <button css={accountButtonStyle}>회원탈퇴</button>
+                    </BottomSheet.Trigger>
+                    <BottomSheet.Portal>
+                      <BottomSheet.Content>
+                        회원탈퇴 하시겠어요?
+                        <BottomSheet.BottomCTA>
+                          <Button
+                            variants="secondary"
+                            onClick={async () => {
+                              await deleteDeactivation();
+                              router.push("/onboarding");
+                            }}
+                          >
+                            회원탈퇴
+                          </Button>
+                          <BottomSheet.Close asChild>
+                            <Button variants="quaternary">닫기</Button>
+                          </BottomSheet.Close>
+                        </BottomSheet.BottomCTA>
+                      </BottomSheet.Content>
+                      <BottomSheet.Overlay />
+                    </BottomSheet.Portal>
+                  </BottomSheet.Root>
+                </div>
+              </motion.div>
             </div>
           </div>
         </motion.div>
@@ -229,7 +203,7 @@ const ButtonStyle = css({
 const accountStyle = css({
   display: "flex",
   // TO DO: margin-top 임의 값 수정 필요
-  marginTop: "460px",
+  marginTop: "360px",
   gap: "40px",
 });
 
@@ -246,19 +220,4 @@ const accountButtonBoxStyle = css({
   justifyContent: "space-between",
   gap: "10px",
   cursor: "pointer",
-});
-
-const kakaoButtonStyle = css({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  width: "100%",
-  height: "56px",
-  borderRadius: "16px",
-  backgroundColor: "#fee500",
-  color: "#000000",
-  fontSize: "15px",
-  fontWeight: 600,
-  cursor: "pointer",
-  gap: "28px",
 });
