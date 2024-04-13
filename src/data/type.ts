@@ -11,6 +11,12 @@ export type InquireType = {
   inquireContent: string;
 };
 
+// 리프레시 토큰
+export type RefreshToken = {
+  accessToken: string;
+  refreshToken: string;
+};
+
 // 로그아웃
 export type Logout = {
   data: string;
