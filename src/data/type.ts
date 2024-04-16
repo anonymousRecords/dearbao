@@ -30,6 +30,7 @@ export type Deactivation = {
 // 닉네임
 export type Nickname = {
   nickname: string;
+  alias: string;
 };
 
 // 미션 (홈 페이지)

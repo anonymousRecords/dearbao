@@ -34,7 +34,7 @@ const navigationList: TabType[] = [
 export default function Drawer({ isOpen, onClose }: DrawerProps) {
   const router = useRouter();
 
-  const { nickname } = useNickname(); 
+  const { nickname, alias } = useNickname(); 
 
   return (
     <AnimatePresence>
@@ -59,10 +59,9 @@ export default function Drawer({ isOpen, onClose }: DrawerProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.3, ease: "easeInOut" }}
             >
-              {/* TO DO : 닉네임 & 호칭 데이터로 수정 */}
               <div css={NicknameStyle}>
                 <h3>{nickname}</h3>
-                <p>호칭</p>
+                <p>{alias}</p>
               </div>
             </motion.div>
             {navigationList.map((tab) => (
