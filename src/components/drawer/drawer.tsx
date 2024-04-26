@@ -5,7 +5,8 @@ import { BottomSheet } from "../bottom-sheet/bottom-sheet";
 import { Button } from "../button";
 import { postLogout } from "@/api/postLogout";
 import { deleteDeactivation } from "@/api/deleteDeactivation";
-import { useNickname } from "@/hook/useNickname";
+import useNickname from "@/hook/useNickname";
+
 
 interface DrawerProps {
   isOpen: boolean;
