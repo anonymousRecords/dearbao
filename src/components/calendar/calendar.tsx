@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { css } from "@emotion/react";
-// import Modal from "../modal/modal";
 import useMyMission from "@/hook/useMyMisson";
 import { Modal } from "../modal";
 
@@ -61,7 +60,12 @@ const Calendar: React.FC<CalendarProps> = ({ dataForDates }) => {
     const isWithData = isDateWithData(date);
 
     return {
-      backgroundColor: isWithData ? "lightblue" : "",
+      width: "40px",
+      height: "40px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: isWithData ? "#DCEFD7" : "",
       color: isToday ? "black" : isSelectedDate ? "#009436" : "#A0A0A0",
       fontWeight: isToday ? "bold" : isSelectedDate ? "bold" : "normal",
       borderRadius: "50%",
@@ -212,14 +216,6 @@ const CalenderWrapperStyle = css({
 });
 
 const WeekdayStyle = css({
-  // display: "flex",
-  // flexDirection: "row",
-  // justifyContent: "space-around",
-  // alignItems: "center",
-  // textAlign: "center",
-  // fontSize: "20px",
-  // color: "#ABABAB",
-  // padding: "10px",
   display: "grid",
   gridTemplateColumns: "repeat(7, 1fr)",
   fontSize: "20px",
@@ -227,16 +223,6 @@ const WeekdayStyle = css({
 });
 
 const DayStyle = css({
-  // width: "100%",
-  // backgroundColor: "pink",
-  // display: "flex",
-  // flexDirection: "row",
-  // justifyContent: "space-between",
-  // alignItems: "center",
-  // textAlign: "center",
-  // fontSize: "20px",
-  // color: "#ABABAB",
-  // padding: "10px",
   width: "100%",
   display: "flex",
   flexDirection: "row",
