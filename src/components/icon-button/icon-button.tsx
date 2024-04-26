@@ -10,8 +10,8 @@ export default function IconButton({
   width,
 }: IconButtonProps) {
   return (
-    <button onClick={onClick}>
-      <img src={imgSrc} alt="icon-button" style={{ width }} />
-    </button>
+    <div onClick={onClick}>
+      <img src={imgSrc} alt="icon-button" style={{ width, cursor: 'pointer' }} />
+    </div>
   );
 }
