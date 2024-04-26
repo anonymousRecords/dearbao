@@ -53,5 +53,7 @@ export type DailyMission = {
 
 export type MyMission = {
   date: string;
-  content: string;
+  missionContent: string; // 데일리 미션 내용
+  missionAnswer: string; // 유저 미션 답변
+  message: string; // 푸바오 답장
 };
