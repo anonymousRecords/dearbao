@@ -5,28 +5,28 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Header } from "../header";
 import { IconButton } from "../icon-button";
-
-const dummyData = [
-  {
-    id: 0,
-    content: "나 보러 왔을 때 내 사진 많이 찍어갔어?",
-  },
-  {
-    id: 1,
-    content: "편지 1",
-  },
-  {
-    id: 2,
-    content:
-      "나를 사진으로 남겨줘서 고마워. 덕분에 돌멩이들이랑 할부지들이 많은 사진과 그 안에 담긴 애정으로 그리움을 이겨낼 것 같아서 푸야는 안심이야!",
-  },
-];
+import { MyMission } from "@/data/type";
+import useNickname from "@/hook/useNickname";
 
 interface ModalProps {
+  missionData: MyMission[];
   closeModal: () => void;
 }
 
-export default function Modal({ closeModal }: ModalProps) {
+export default function Modal({ closeModal, missionData }: ModalProps) {
+  // missisonData를 받아서 modalData에 담아서 출력
+  const modalData: string[] = [];
+  
+  missionData.forEach((mission) => {
+    modalData.push(mission.missionContent);
+    modalData.push(mission.missionAnswer);
+    modalData.push(mission.message);
+  });
+  
+  // 모달 슬라이드 타이틀
+  const { nickname } = useNickname();
+  const slideTitles = ["데일리 미션", `${nickname}님의 답장`, "푸바오의 답장"];
+
   return (
     <div css={modalStyle}>
       <Swiper
@@ -41,8 +41,8 @@ export default function Modal({ closeModal }: ModalProps) {
           borderRadius: "8px",
         }}
       >
-        {dummyData.map((data) => (
-          <SwiperSlide key={data.id}>
+        {modalData.map((modalData, index) => (
+          <SwiperSlide key={index}>
             <div
               style={{
                 width: "100%",
@@ -69,7 +69,8 @@ export default function Modal({ closeModal }: ModalProps) {
               <div
                 style={{ width: "100%", height: "100%", padding: "0px 20px" }}
               >
-                <h2 style={{ marginTop: "50px" }}>{data.content}</h2>
+                <h2 style={{ marginTop: "50px" }}>{slideTitles[index]}</h2>
+                <h2 style={{ marginTop: "50px" }}>{modalData}</h2>
               </div>
             </div>
           </SwiperSlide>
