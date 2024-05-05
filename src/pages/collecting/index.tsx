@@ -8,7 +8,7 @@ const Collecting = () => {
   const router = useRouter();
 
   return (
-    <div css={WrapperStyle}>
+    <div>
       <Header
         left={
           <IconButton
@@ -20,7 +20,7 @@ const Collecting = () => {
         title=""
         right=""
       />
-      <div>
+      <div css={WrapperStyle}>
         <p css={GuideStyle}>
           푸바오와 나의
           <br /> 추억을 모아보세요!
@@ -36,14 +36,15 @@ const WrapperStyle = css({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
+  padding: "20px 0px",
 })
 
 const GuideStyle = css({
   fontSize: "22px",
   fontWeight: "bold",
-  marginTop: "100px",
   marginBottom: "60px",
-  color: "#FFFFFF",
+  color: "#1E212B",
+  fontFamily: "EF_jejudoldam",
   textAlign: "center",
   lineHeight: "1.3",
 });

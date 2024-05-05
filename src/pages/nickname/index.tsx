@@ -131,8 +131,8 @@ const NickName = () => {
             onClick={() => setSelectGender(true)}
             css={ButtonStyle}
             style={{
-              color: selectGender === true ? "white" : "#A1A5AC",
-              backgroundColor: selectGender === true ? "#A7C2B1" : "#FFFFFF",
+              color: selectGender === true ? "white" : "#1E212B",
+              backgroundColor: selectGender === true ? "#1E212B" : "#FFFFFF",
               fontWeight: selectGender === true ? "bold" : "normal",
             }}
           >
@@ -142,8 +142,8 @@ const NickName = () => {
             onClick={() => setSelectGender(false)}
             css={ButtonStyle}
             style={{
-              color: selectGender === false ? "white" : "#A1A5AC",
-              backgroundColor: selectGender === false ? "#A7C2B1" : "#FFFFFF",
+              color: selectGender === false ? "white" : "#1E212B",
+              backgroundColor: selectGender === false ? "#1E212B" : "#FFFFFF",
               fontWeight: selectGender === false ? "bold" : "normal",
             }}
           >
@@ -175,7 +175,8 @@ const GuideStyle = css({
   fontWeight: "bold",
   marginTop: "100px",
   marginBottom: "60px",
-  color: "#FFFFFF",
+  fontFamily: 'EF_jejudoldam',
+  color: "#1E212B",
   textAlign: "center",
   lineHeight: "1.3",
 });
@@ -184,7 +185,7 @@ const TitleStyle = css({
   fontSize: "18px",
   fontWeight: "bold",
   marginBottom: "10px",
-  color: "#FFFFFF",
+  color: "#1E212B",
 });
 
 const ButtonContainerStyle = css({
@@ -204,6 +205,7 @@ const ButtonStyle = css({
   width: "100%",
   height: "52px",
   boxShadow: "0px 0px 16px 2px rgba(0, 0, 0, 0.02)",
+  border: '2px solid #1E212B',
   backgroundColor: "#FFFFFF",
   color: "A1A5AC",
 });

@@ -7,7 +7,6 @@ import { postLogout } from "@/api/postLogout";
 import { deleteDeactivation } from "@/api/deleteDeactivation";
 import useNickname from "@/hook/useNickname";
 
-
 interface DrawerProps {
   isOpen: boolean;
   onClose: () => void;
@@ -97,7 +96,7 @@ export default function Drawer({ isOpen, onClose }: DrawerProps) {
                         로그아웃 하시겠어요?
                         <BottomSheet.BottomCTA>
                           <Button
-                            variants="secondary"
+                            variants="primary"
                             onClick={async () => {
                               await postLogout();
                               router.push("/onboarding");
@@ -123,7 +122,7 @@ export default function Drawer({ isOpen, onClose }: DrawerProps) {
                         회원탈퇴 하시겠어요?
                         <BottomSheet.BottomCTA>
                           <Button
-                            variants="secondary"
+                            variants="primary"
                             onClick={async () => {
                               await deleteDeactivation();
                               router.push("/onboarding");

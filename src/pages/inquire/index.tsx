@@ -174,7 +174,8 @@ const InputContainerStyle = css({
 const TitleStyle = css({
   fontSize: "18px",
   fontWeight: "500",
-  color: "#FFFFFF",
+  color: "#1E212B",
+  marginBottom: "5px",
 });
 
 export default MakeInquire;

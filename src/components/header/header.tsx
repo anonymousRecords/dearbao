@@ -30,8 +30,8 @@ const headerTitle = css({
   flex: 3,
   textAlign: "center",
   fontSize: "20px",
-  fontWeight: 500,
-  color: "white",
+  fontWeight: 700,
+  color: "#1E212B",
   letterSpacing: "1px",
 });
 

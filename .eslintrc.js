@@ -45,7 +45,7 @@ module.exports = {
     "@typescript-eslint/no-parameter-properties": "off",
     "@typescript-eslint/no-var-requires": "warn",
     "@typescript-eslint/no-non-null-asserted-optional-chain": "warn",
-    "@typescript-eslint/no-inferrable-types": "warn",
+    "@typescript-eslint/no-inferrable-types": [{ "ignoreParameters": true }],
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/naming-convention": [
       "error",
