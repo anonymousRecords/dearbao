@@ -6,6 +6,7 @@ import { Button } from "../button";
 import { postLogout } from "@/api/postLogout";
 import { deleteDeactivation } from "@/api/deleteDeactivation";
 import useNickname from "@/hook/useNickname";
+import { DisplayAds } from "../display-ads";
 
 interface DrawerProps {
   isOpen: boolean;
@@ -80,6 +81,7 @@ export default function Drawer({ isOpen, onClose }: DrawerProps) {
                 <img src="/svg/arrow-right.svg" alt="arrow-right" />
               </motion.div>
             ))}
+            <DisplayAds />
             <div css={accountStyle}>
               <motion.div
                 initial={{ opacity: 0, y: 0 }}

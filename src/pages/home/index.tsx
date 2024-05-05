@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import useNickname from "@/hook/useNickname";
 import { css } from "@emotion/react";
 import Image from "next/image";
+import DisplayAds from "@/components/display-ads/display-ads";
 
 const Home = () => {
   const router = useRouter();
@@ -60,7 +61,7 @@ const Home = () => {
             gap: "4px",
             alignItems: "baseline",
             marginBottom: "20px",
-            visibility: firstRender ? "visible" : "hidden"
+            visibility: firstRender ? "visible" : "hidden",
           }}
         >
           <p style={{ fontSize: "28px", fontFamily: "EF_jejudoldam" }}>
@@ -136,6 +137,7 @@ const Home = () => {
           </>
         )}
       </div>
+      <DisplayAds />
       <Drawer isOpen={isDrawerOpen} onClose={closeDrawer} />
     </>
   );
