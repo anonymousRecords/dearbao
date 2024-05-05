@@ -1,4 +1,6 @@
 import { css } from "@emotion/react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variants: "primary" | "secondary" | "tertiary" | "quaternary";
@@ -37,7 +39,7 @@ const variantsCss = {
     color: "#1E212B",
   }),
   quaternary: css({
-    backgroundColor: "#A7C2B1",
+    backgroundColor: "#4D5159",
     color: "#FFFFFF",
   }),
 };
@@ -50,11 +52,32 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }: ButtonProps) => {
   const buttonStyle = [base, variantsCss[variants]];
+  const [isBouncing, setIsBouncing] = useState(false);
+
+  const toggleBounceAnimation = () => {
+    setIsBouncing(!isBouncing);
+  };
 
   return (
-    <button type={type} css={buttonStyle} disabled={disabled} {...props}>
-      {children}
-    </button>
+    <motion.div
+      onClick={toggleBounceAnimation}
+      animate={{
+        scale: isBouncing ? [1, 0.95, 1.1] : 1,
+      }}
+      transition={{
+        scale: { duration: 0.3 },
+      }}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+      }}
+    >
+      <button type={type} disabled={disabled} css={buttonStyle} {...props}>
+        {children}
+      </button>
+    </motion.div>
   );
 };
 
